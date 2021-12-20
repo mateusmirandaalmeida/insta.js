@@ -136,6 +136,7 @@ declare module '@androz2091/insta.js' {
             sourceURL: string | null;
         } | undefined;
         public mediaData: {
+            mediaType?: number;
             isLiked: boolean;
             isAnimated: boolean;
             isSticker: boolean;
