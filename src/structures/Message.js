@@ -115,6 +115,7 @@ class Message {
             }
         } else if (data.item_type === 'media') {
             this.mediaData = {
+                mediaType:data.media.media_type,
                 isLike: true,
                 isAnimated: false,
                 isSticker: false,
