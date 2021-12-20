@@ -380,8 +380,13 @@ class Client extends EventEmitter {
             }
         })
         ig.realtime.on('receive', (topic, messages) => this.handleRealtimeReceive(topic, messages))
-        ig.realtime.on('error', console.error)
-        ig.realtime.on('close', () => console.error('RealtimeClient closed'))
+        
+        ig.realtime.on('error', (e) => {
+            this.emit('error', e)
+        })
+        ig.realtime.on('close', () => {
+            this.emit('close')
+        })
 
         await ig.realtime.connect({
             irisData: await ig.feed.directInbox().request()
