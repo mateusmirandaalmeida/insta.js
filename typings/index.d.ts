@@ -24,7 +24,7 @@ declare module '@androz2091/insta.js' {
         public fetchChat(chatID: string, force: boolean): Promise<Chat>;
         public fetchUser(query: string, force: boolean): Promise<User>;
         public logout(): void;
-        public login(username: string, password: string, state: object): void;
+        public login(username: string, password: string, state: object, me: any): void;
         public toJSON(): ClientJSON;
 
         public on<K extends keyof ClientEvents>(event: K, listener: (...args: ClientEvents[K]) => void): this;
