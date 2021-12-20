@@ -360,15 +360,19 @@ class Client extends EventEmitter {
         if (state) {
             await ig.state.deserialize(state);
             userData = await ig.user.info(me.pk)
-        } {
+
+            this.user = new ClientUser(this, {
+                ...me,
+                ...userData
+            })
+        } else {
             const response = await ig.account.login(username, password)
             userData = await ig.user.info(response.pk)
+            this.user = new ClientUser(this, {
+                ...response,
+                ...userData
+            })
         }
-        
-        this.user = new ClientUser(this, {
-            ...response,
-            ...userData
-        })
         this.cache.users.set(this.user.id, this.user)
         this.emit('debug', 'logged', this.user)
 
