@@ -355,7 +355,9 @@ class Client extends EventEmitter {
     async login (username, password, state, me) {
         const ig = withFbns(withRealtime(new IgApiClient()))
         ig.state.generateDevice(username)
-        await ig.simulate.preLoginFlow()
+        try {
+            await ig.simulate.preLoginFlow()
+        } catch(_) {}
         let userData = null
         if (state) {
             await ig.state.deserialize(state);
